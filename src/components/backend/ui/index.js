@@ -3,6 +3,7 @@ export * from "./Button";
 export * from "./Card";
 export * from "./Checkbox";
 export * from "./DataTable";
+export * from "./Image";
 export * from "./Input";
 export * from "./Modal";
 export * from "./Switch";
