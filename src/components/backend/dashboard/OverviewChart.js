@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/backend/ui";
 
@@ -26,6 +27,28 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function OverviewChart() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const rafId = requestAnimationFrame(() => {
+      setIsMounted(true);
+    });
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <Card className="lg:col-span-2">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0">
+          <div className="space-y-1"><CardTitle>Activity Trends</CardTitle></div>
+        </CardHeader>
+        <CardContent className="pt-4">
+          <div className="h-[250px] w-full flex items-center justify-center text-white/30 text-xs">Initializing visualizer...</div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className="lg:col-span-2">
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
