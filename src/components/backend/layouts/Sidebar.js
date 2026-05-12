@@ -1,5 +1,6 @@
-import { LayoutDashboard, BarChart3, Briefcase, Settings } from "lucide-react";
+import { LayoutDashboard, BarChart3, Briefcase, Settings, Layers } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Sidebar() {
     return (
@@ -10,18 +11,21 @@ export default function Sidebar() {
             </div>
 
             <nav className="flex flex-col gap-2 p-4">
-                <a href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600/10 to-transparent border-l-2 border-purple-600 text-white group transition-colors">
+                <Link href="/admin" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600/10 to-transparent border-l-2 border-purple-600 text-white group transition-colors">
                     <LayoutDashboard size={18} className="text-purple-500" /> Overview
-                </a>
-                <a href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white transition-all group">
+                </Link>
+                <Link href="/admin/categories" className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white transition-all group">
+                    <Layers size={18} className="group-hover:text-emerald-400 transition-colors" /> Categories
+                </Link>
+                <Link href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white transition-all group">
                     <BarChart3 size={18} className="group-hover:text-cyan-400 transition-colors" /> Analytics
-                </a>
-                <a href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white transition-all group">
+                </Link>
+                <Link href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white transition-all group">
                     <Briefcase size={18} className="group-hover:text-pink-400 transition-colors" /> Projects
-                </a>
-                <a href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white transition-all group">
+                </Link>
+                <Link href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white transition-all group">
                     <Settings size={18} className="group-hover:text-amber-400 transition-colors" /> Settings
-                </a>
+                </Link>
             </nav>
         </aside>
     );
