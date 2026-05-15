@@ -31,7 +31,6 @@ const BlogSchema = new mongoose.Schema({
 
 // 🚀 Powerful Indexes for High Performance Mining
 BlogSchema.index({ title: 'text', description: 'text' }); // Enables Ultra-Fast Text Search!
-BlogSchema.index({ slug: 1 }); // Bulletproof retrieval via URL slug
 BlogSchema.index({ publishAt: -1, isFeatured: -1 }); // Highly efficient sorting for landing pages
 BlogSchema.index({ categories: 1 }); // Relational multi-key aggregation speed-up
 BlogSchema.index({ technologies: 1 }); // Lightning-fast Tech-specific content filters

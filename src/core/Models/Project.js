@@ -36,7 +36,6 @@ const ProjectSchema = new mongoose.Schema({
 });
 
 ProjectSchema.index({ title: 'text', description: 'text' });
-ProjectSchema.index({ slug: 1 });
 ProjectSchema.index({ category: 1 });
 ProjectSchema.index({ published: 1, isFeatured: -1 });
 ProjectSchema.pre('save', function () {
