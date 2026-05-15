@@ -12,7 +12,7 @@ export default function BlogListPage() {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const res = await fetch('/api/blogs', { cache: 'no-store' });
+                const res = await fetch('/api/admin/blogs', { cache: 'no-store' });
                 const result = await res.json();
                 if (result.success) setData(result.data);
             } catch (error) {

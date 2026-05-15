@@ -1,4 +1,3 @@
-import dbConnect from '@/config/db';
 import User from '@/models/User';
 import jwt from 'jsonwebtoken';
 
@@ -7,8 +6,6 @@ const JWT_EXPIRE = '24h';
 
 export const authService = {
     async login(email, password) {
-        await dbConnect();
-
         if (!email || !password) {
             throw new Error('Please provide both email and password');
         }

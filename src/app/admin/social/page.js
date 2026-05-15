@@ -75,7 +75,7 @@ export default function SocialLinksPage() {
     // Initial Fetch
     const fetchSocials = async () => {
         try {
-            const res = await fetch('/api/socials', { cache: 'no-store' });
+            const res = await fetch('/api/admin/socials', { cache: 'no-store' });
             const result = await res.json();
             if (result.success) {
                 const initialSorted = [...result.data].sort((a, b) => {
@@ -125,7 +125,7 @@ export default function SocialLinksPage() {
         setSocials(prev => prev.map(s => s._id === item._id ? { ...s, status: newStatus } : s));
 
         try {
-            const res = await fetch('/api/socials', {
+            const res = await fetch('/api/admin/socials', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id: item._id, status: newStatus })
@@ -158,7 +158,7 @@ export default function SocialLinksPage() {
         if (!editingItem) return;
         setSaving(true);
         try {
-            const res = await fetch('/api/socials', {
+            const res = await fetch('/api/admin/socials', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

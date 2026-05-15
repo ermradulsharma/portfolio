@@ -1,26 +1,14 @@
 import Router from './Router';
-
-/**
- * Define Web Application Routes utilizing standard Laravel-style grouping.
- */
 const webRoutes = [
-    // --- Public Route Definitions ---
     { path: '/', middleware: [] },
-
-    // --- Auth Route Definitions ---
-    ...Router.group({ middleware: ['guest'] }, [
-        { path: '/login' },
-        { path: '/register' },
-    ]),
-
-    // --- Admin Panel Governance (Protected) ---
-    ...Router.group({ prefix: '/admin', middleware: ['auth'] }, [
-        { path: '/' },
-        { path: '/dashboard' },
-        { path: '/users' },
-        { path: '/settings' },
-        // Add infinite nested routes here instantly protected!
-    ])
+    ...Router.group({ middleware: ['guest'] }, [{ path: '/login' }, { path: '/register' }]),
+    ...Router.group({ prefix: '/admin', middleware: ['auth'] }),
+    ...Router.group({ prefix: '/admin/project', middleware: ['auth'] }),
+    ...Router.group({ prefix: '/admin/category', middleware: ['auth'] }),
+    ...Router.group({ prefix: '/admin/technology', middleware: ['auth'] }),
+    ...Router.group({ prefix: '/admin/blog', middleware: ['auth'] }),
+    ...Router.group({ prefix: '/admin/user', middleware: ['auth'] }),
+    ...Router.group({ prefix: '/admin/social', middleware: ['auth'] }),
 ];
 
 export default webRoutes;

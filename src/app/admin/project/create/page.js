@@ -43,8 +43,8 @@ export default function AddProjectPage() {
         const loadBaseData = async () => {
             try {
                 const [catRes, userRes] = await Promise.all([
-                    fetch('/api/categories', { cache: 'no-store' }),
-                    fetch('/api/users', { cache: 'no-store' })
+                    fetch('/api/admin/categories', { cache: 'no-store' }),
+                    fetch('/api/admin/users', { cache: 'no-store' })
                 ]);
                 const [catData, userData] = await Promise.all([catRes.json(), userRes.json()]);
 
@@ -71,7 +71,7 @@ export default function AddProjectPage() {
                 return;
             }
             try {
-                const techRes = await fetch(`/api/technologies`, { cache: 'no-store' });
+                const techRes = await fetch(`/api/admin/technologies`, { cache: 'no-store' });
                 const techData = await techRes.json();
                 if (techData.success) {
                     const filtered = techData.data.filter(tech => tech.category === formData.category);
@@ -121,7 +121,7 @@ export default function AddProjectPage() {
         }
 
         try {
-            const response = await fetch('/api/projects', {
+            const response = await fetch('/api/admin/projects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

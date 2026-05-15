@@ -11,7 +11,7 @@ export default function ProjectListPage() {
 
     const fetchProjects = async () => {
         try {
-            const res = await fetch('/api/projects', { cache: 'no-store' });
+            const res = await fetch('/api/admin/projects', { cache: 'no-store' });
             const result = await res.json();
             if (result.success) setData(result.data);
         } catch (error) {
@@ -31,7 +31,7 @@ export default function ProjectListPage() {
             // Delete logic (if DELETE handler were added to route) - just mock update state for now
             // Or if they don't have a delete route yet, we alert.
             // Let's write delete endpoint too, but first we'll let the list page delete locally and report.
-            const res = await fetch(`/api/projects?id=${id}`, { method: 'DELETE' });
+            const res = await fetch(`/api/admin/projects/${id}`, { method: 'DELETE' });
             const result = await res.json();
             if (result.success) {
                 setData(prev => prev.filter(p => p._id !== id));

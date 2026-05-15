@@ -41,7 +41,7 @@ export default function CategoriesPage() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await fetch('/api/categories', { cache: 'no-store' });
+                const res = await fetch('/api/admin/categories', { cache: 'no-store' });
                 const result = await res.json();
                 if (result.success) setCategories(result.data);
             } catch (error) {
@@ -76,7 +76,7 @@ export default function CategoriesPage() {
         setTechLoading(true);
         setCategoryTechs([]);
         try {
-            const res = await fetch(`/api/technologies?categoryId=${category._id}`, { cache: 'no-store' });
+            const res = await fetch(`/api/admin/technologies?categoryId=${category._id}`, { cache: 'no-store' });
             const result = await res.json();
             if (result.success) setCategoryTechs(result.data);
         } catch (e) {
