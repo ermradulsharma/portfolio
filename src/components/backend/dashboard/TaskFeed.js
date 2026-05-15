@@ -1,10 +1,10 @@
-import { CheckCircle2, Clock, RefreshCw } from "lucide-react";
+import { LuCircleCheck, LuClock, LuRefreshCw } from "react-icons/lu";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/backend/ui";
 
 const tasks = [
-  { id: 1, name: "Core UI Upgrade", user: "AM", time: "2m ago", status: "Done", variant: "success", icon: CheckCircle2 },
-  { id: 2, name: "API Integration", user: "JS", time: "15m ago", status: "In Progress", variant: "progress", icon: RefreshCw },
-  { id: 3, name: "Database Sync", user: "RL", time: "1h ago", status: "Pending", variant: "pending", icon: Clock },
+  { id: 1, name: "Core UI Upgrade", user: "AM", time: "2m ago", status: "Done", variant: "success", icon: LuCircleCheck },
+  { id: 2, name: "API Integration", user: "JS", time: "15m ago", status: "In Progress", variant: "progress", icon: LuRefreshCw },
+  { id: 3, name: "Database Sync", user: "RL", time: "1h ago", status: "Pending", variant: "pending", icon: LuClock },
 ];
 
 const styles = {

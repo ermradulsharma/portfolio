@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react"
-import { X } from "lucide-react"
+import { LuX } from "react-icons/lu"
 import { cn } from "@/core/Lib/utils"
 
 const ModalContext = React.createContext({
@@ -26,7 +26,7 @@ export function ModalContent({ className, children, ...props }) {
     return (
         <div className={cn("relative z-50 w-full max-w-md p-6 overflow-hidden bg-[#111118] border border-white/10 shadow-2xl rounded-3xl animate-in zoom-in-95 duration-200", className)} {...props}>
             {children}
-            <button onClick={() => setOpen(false)} className="absolute right-4 top-4 p-1.5 rounded-full opacity-70 ring-offset-background transition-opacity hover:opacity-100 hover:bg-white/5 focus:outline-none"><X className="h-4 w-4 text-white" /><span className="sr-only">Close</span></button>
+            <button onClick={() => setOpen(false)} className="absolute right-4 top-4 p-1.5 rounded-full opacity-70 ring-offset-background transition-opacity hover:opacity-100 hover:bg-white/5 focus:outline-none"><LuX className="h-4 w-4 text-white" /><span className="sr-only">Close</span></button>
         </div>
     );
 }

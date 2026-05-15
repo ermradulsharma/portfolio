@@ -1,7 +1,7 @@
 "use client";
 
 import { ResponsiveContainer, AreaChart, Area } from "recharts";
-import { TrendingUp, TrendingDown } from "lucide-react";
+import { LuTrendingUp, LuTrendingDown } from "react-icons/lu";
 import { Card, CardContent } from "@/components/backend/ui";
 
 const sparklineData = [
@@ -39,7 +39,7 @@ export default function MetricCard({ title, value, description, isTrendUp, icon:
           {/* Inline Trend Indicator */}
           <div className="flex flex-col justify-end pb-1">
             <div className={`flex items-center gap-1 text-sm font-semibold ${isTrendUp ? "text-cyan-400" : "text-red-400"}`}>
-              {isTrendUp ? <TrendingUp size={16} /> : <TrendingDown size={16} />}
+              {isTrendUp ? <LuTrendingUp size={16} /> : <LuTrendingDown size={16} />}
               {description.split(" ")[0]}
             </div>
             <p className="text-xs text-white/40 whitespace-nowrap mt-0.5">vs last cycle</p>

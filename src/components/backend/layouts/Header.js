@@ -1,4 +1,4 @@
-import { Search, Bell } from "lucide-react";
+import { LuSearch, LuBell } from "react-icons/lu";
 
 export default function Header() {
   return (
@@ -8,7 +8,7 @@ export default function Header() {
         
         {/* Sleek Global Search */}
         <div className="relative max-w-md w-full group">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-cyan-400 transition-colors" />
+          <LuSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-cyan-400 transition-colors" />
           <input 
             type="text" 
             placeholder="Search metrics or records..." 
@@ -19,7 +19,7 @@ export default function Header() {
 
       <div className="flex items-center gap-4">
         <button className="relative p-2 text-white/60 hover:text-white hover:bg-white/5 rounded-full transition-colors">
-          <Bell size={20} />
+          <LuBell size={20} />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-black"></span>
         </button>
         

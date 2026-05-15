@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import { LuChevronLeft, LuChevronRight, LuEllipsis } from "react-icons/lu";
 import { Button } from "./Button";
 
 const Pagination = ({ currentPage, totalPages, onPageChange, className = "" }) => {
@@ -27,17 +27,17 @@ const Pagination = ({ currentPage, totalPages, onPageChange, className = "" }) =
         <div className={`flex items-center justify-between px-2 py-4 ${className}`}>
             <div className="text-sm text-white/40 font-medium">Showing Page <span className="text-white">{currentPage}</span> of <span className="text-white">{totalPages}</span></div>
             <div className="flex items-center gap-1">
-                <Button variant="ghost" size="sm" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="h-8 w-8 p-0 border border-white/10 bg-white/[0.02] hover:bg-white/10 disabled:opacity-30"><ChevronLeft size={16} /></Button>
+                <Button variant="ghost" size="sm" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="h-8 w-8 p-0 border border-white/10 bg-white/[0.02] hover:bg-white/10 disabled:opacity-30"><LuChevronLeft size={16} /></Button>
                 <div className="flex items-center gap-1 mx-1">
                     {pages.map((page, idx) => (
                         page === '...' ? (
-                            <span key={`ellipsis-${idx}`} className="flex h-8 w-8 items-center justify-center text-white/30"><MoreHorizontal size={14} /></span>
+                            <span key={`ellipsis-${idx}`} className="flex h-8 w-8 items-center justify-center text-white/30"><LuEllipsis size={14} /></span>
                         ) : (
                             <button key={page} onClick={() => onPageChange(page)} className={`h-8 w-8 rounded-lg text-xs font-medium transition-all border ${currentPage === page ? "bg-white/10 border-white/20 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]" : "bg-transparent border-transparent text-white/50 hover:bg-white/5 hover:text-white"}`}>{page}</button>
                         )
                     ))}
                 </div>
-                <Button variant="ghost" size="sm" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} className="h-8 w-8 p-0 border border-white/10 bg-white/[0.02] hover:bg-white/10 disabled:opacity-30"><ChevronRight size={16} /></Button>
+                <Button variant="ghost" size="sm" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} className="h-8 w-8 p-0 border border-white/10 bg-white/[0.02] hover:bg-white/10 disabled:opacity-30"><LuChevronRight size={16} /></Button>
             </div>
         </div>
     );

@@ -2,21 +2,19 @@
 
 import { useState, useEffect } from "react";
 import {
-    Layers, Search, Plus, Pencil, Boxes, Trash2,
-    Layout, Server, Globe, Smartphone, Tablet, Gamepad2,
-    Palette, Database, Cloud, Terminal, GitBranch, Box,
-    Code2, Webhook, CheckCircle2, ShieldAlert, BrainCircuit,
-    Link as LinkIcon, Cpu, CreditCard, Wrench, HardDrive, Monitor, Star,
-    Edit2,
-    Edit
-} from "lucide-react";
+    LuLayers, LuSearch, LuPlus, LuPencil, LuBoxes, LuTrash2,
+    LuLayoutGrid, LuServer, LuGlobe, LuSmartphone, LuTablet, LuGamepad2,
+    LuPalette, LuDatabase, LuCloud, LuTerminal, LuGitBranch, LuBox,
+    LuCode, LuWebhook, LuCircleCheck, LuShieldAlert, LuBrainCircuit,
+    LuLink as LuLinkIcon, LuCpu, LuCreditCard, LuWrench, LuHardDrive, LuMonitor, LuStar
+} from "react-icons/lu";
 import { Button, Input, Checkbox, DataTable, ActionModal, Switch, Image } from "@/components/backend/ui";
 
 const IconMap = {
-    Layout, Server, Globe, Smartphone, Tablet, Gamepad2,
-    Palette, Database, Cloud, Terminal, GitBranch, Box,
-    Code2, Webhook, CheckCircle2, ShieldAlert, BrainCircuit,
-    Link: LinkIcon, Cpu, CreditCard, Wrench, HardDrive, Monitor, Star
+    Layout: LuLayoutGrid, Server: LuServer, Globe: LuGlobe, Smartphone: LuSmartphone, Tablet: LuTablet, Gamepad2: LuGamepad2,
+    Palette: LuPalette, Database: LuDatabase, Cloud: LuCloud, Terminal: LuTerminal, GitBranch: LuGitBranch, Box: LuBox,
+    Code2: LuCode, Webhook: LuWebhook, CheckCircle2: LuCircleCheck, ShieldAlert: LuShieldAlert, BrainCircuit: LuBrainCircuit,
+    Link: LuLinkIcon, Cpu: LuCpu, CreditCard: LuCreditCard, Wrench: LuWrench, HardDrive: LuHardDrive, Monitor: LuMonitor, Star: LuStar
 };
 
 export default function CategoriesPage() {
@@ -101,7 +99,6 @@ export default function CategoriesPage() {
 
     // Handlers
     const handleUpdateSave = async () => {
-        // API calling goes here in next step
         setIsEditModalOpen(false);
     };
 
@@ -115,7 +112,7 @@ export default function CategoriesPage() {
         {
             title: "Icon",
             render: (_, record) => {
-                const IconComponent = IconMap[record.icon] || Layers;
+                const IconComponent = IconMap[record.icon] || LuLayers;
                 return (
                     <div className="flex items-center justify-center gap-3">
                         <div className="h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center text-cyan-400 border border-white/5 hover:border-cyan-500/30 transition-all shadow-sm">
@@ -156,9 +153,9 @@ export default function CategoriesPage() {
             className: "text-center",
             render: (_, record) => (
                 <div className="flex items-center justify-center gap-1">
-                    <Button onClick={() => openTechPreview(record)} variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-cyan-400 hover:bg-cyan-500/10 transition-all" title="View Technology"><Boxes size={16} /></Button>
-                    <Button onClick={() => openEditModal(record)} variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all" title="Edit Domain"><Pencil size={16} /></Button>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-all" title="Delete Permanent"><Trash2 size={16} /></Button>
+                    <Button onClick={() => openTechPreview(record)} variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-cyan-400 hover:bg-cyan-500/10 transition-all" title="View Technology"><LuBoxes size={16} /></Button>
+                    <Button onClick={() => openEditModal(record)} variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all" title="Edit Domain"><LuPencil size={16} /></Button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-all" title="Delete Permanent"><LuTrash2 size={16} /></Button>
                 </div>
             )
         }
@@ -169,17 +166,17 @@ export default function CategoriesPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
                 <div>
                     <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 tracking-tight flex items-center gap-3">
-                        <Layers size={20} className="text-white/60" /> Categories
+                        <LuLayers size={20} className="text-white/60" /> Categories
                     </h1>
                     <p className="text-white/40 text-sm mt-1">Manage system taxonomy and global domains ({filteredData.length})</p>
                 </div>
 
                 <div className="flex items-center gap-3">
                     <div className="relative">
-                        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                        <LuSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
                         <Input placeholder="Search domains..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-10 w-64" />
                     </div>
-                    <Button variant="premium" className="gap-2"><Plus size={16} /> Add Domain</Button>
+                    <Button variant="premium" className="gap-2"><LuPlus size={16} /> Add Domain</Button>
                 </div>
             </div>
 
@@ -192,7 +189,7 @@ export default function CategoriesPage() {
             )}
 
             {/* Abstract Encapsulated Action Modal */}
-            <ActionModal open={isEditModalOpen} onOpenChange={setIsEditModalOpen} title="Edit Taxonomy Domain" description="Modify specific metadata configuration for the selected track." icon={Pencil} iconColor="text-emerald-400" saveText="Save" cancelText="Cancel" onSave={handleUpdateSave}>
+            <ActionModal open={isEditModalOpen} onOpenChange={setIsEditModalOpen} title="Edit Taxonomy Domain" description="Modify specific metadata configuration for the selected track." icon={LuPencil} iconColor="text-emerald-400" saveText="Save" cancelText="Cancel" onSave={handleUpdateSave}>
                 <div className="space-y-5">
                     <div className="space-y-1.5">
                         <label className="text-xs font-medium text-white/60 uppercase tracking-wide px-1">Domain Name</label>
@@ -222,7 +219,7 @@ export default function CategoriesPage() {
             </ActionModal>
 
             {/* Technology Stack Viewing Modal */}
-            <ActionModal open={isTechModalOpen} onOpenChange={setIsTechModalOpen} title={`${techCategory?.name || ''} Technology Stack`} description={`View absolute ecosystem tools registered within this domain directory.`} icon={Boxes} iconColor="text-cyan-400" saveText="Close Explorer" cancelText="Back" onSave={() => setIsTechModalOpen(false)} size="max-w-xl">
+            <ActionModal open={isTechModalOpen} onOpenChange={setIsTechModalOpen} title={`${techCategory?.name || ''} Technology Stack`} description={`View absolute ecosystem tools registered within this domain directory.`} icon={LuBoxes} iconColor="text-cyan-400" saveText="Close Explorer" cancelText="Back" onSave={() => setIsTechModalOpen(false)} size="max-w-xl">
                 <div className="min-h-[200px]">
                     {techLoading ? (
                         <div className="h-32 flex flex-col items-center justify-center text-white/40 gap-3">
@@ -243,7 +240,7 @@ export default function CategoriesPage() {
                                 },
                                 { title: "Tech Name", dataIndex: "name", className: "font-medium text-white/90" },
                                 { title: "Slug", dataIndex: "slug", className: "font-mono text-xs text-white/40" },
-                                { title: "Action", render: (_, record) => <Button onClick={() => openEditTechModal(record)} variant="ghost" size="sm"><Edit size={15} /></Button> }
+                                { title: "Action", render: (_, record) => <Button onClick={() => openEditTechModal(record)} variant="ghost" size="sm"><LuPencil size={15} /></Button> }
                             ]}
                             data={categoryTechs} selectable={false} paginated={false} emptyMessage="No technologies found in registry." className="max-h-[400px] overflow-y-auto no-scrollbar" />
                     )}
@@ -251,7 +248,7 @@ export default function CategoriesPage() {
             </ActionModal>
 
             {/* Dynamic Technology Specialized Edit Modal */}
-            <ActionModal open={isTechEditModalOpen} onOpenChange={setIsTechEditModalOpen} title="Edit Technical Asset" description={`Refining dataset configuration for ${editingTech?.name || 'selected entity'}`} icon={Edit2} iconColor="text-amber-400" saveText="Update Tech" cancelText="Discard" onSave={() => setIsTechEditModalOpen(false)}>
+            <ActionModal open={isTechEditModalOpen} onOpenChange={setIsTechEditModalOpen} title="Edit Technical Asset" description={`Refining dataset configuration for ${editingTech?.name || 'selected entity'}`} icon={LuPencil} iconColor="text-amber-400" saveText="Update Tech" cancelText="Discard" onSave={() => setIsTechEditModalOpen(false)}>
                 <div className="space-y-4">
                     <div className="flex items-center gap-4 bg-white/[0.02] p-3 border border-white/5 rounded-xl">
                         <Image src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${techFormData.icon?.toLowerCase()}/${techFormData.icon?.toLowerCase()}-original.svg`} fallbackSrc={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${techFormData.icon?.toLowerCase()}/${techFormData.icon?.toLowerCase()}-plain.svg`} alt={techFormData.name} containerClassName="h-12 w-12 bg-white/5" />

@@ -6,6 +6,7 @@ export * from "./DataTable";
 export * from "./Image";
 export * from "./Input";
 export * from "./Modal";
-export * from "./Switch";
 export * from "./Pagination";
+export * from "./Select";
+export * from "./Switch";
 export * from "./Table";

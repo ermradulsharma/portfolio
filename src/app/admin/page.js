@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DollarSign, Users, Activity, Plus } from "lucide-react";
+import { LuDollarSign, LuUsers, LuActivity, LuPlus } from "react-icons/lu";
 import { MetricCard, OverviewChart, TaskFeed } from "@/components/backend/dashboard";
 import { Button, Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalFooter } from "@/components/backend/ui";
 
@@ -20,7 +20,7 @@ export default function Home() {
 
         {/* Integrating Premium Button to launch Modal */}
         <Button variant="premium" className="gap-2" onClick={() => setShowModal(true)}>
-          <Plus size={16} />
+          <LuPlus size={16} />
           New Insight
         </Button>
       </div>
@@ -49,21 +49,21 @@ export default function Home() {
           value="$42,394"
           description="+12.5% increase"
           isTrendUp={true}
-          icon={DollarSign}
+          icon={LuDollarSign}
         />
         <MetricCard
           title="Active Users"
           value="8,234"
           description="+4.2% growth"
           isTrendUp={true}
-          icon={Users}
+          icon={LuUsers}
         />
         <MetricCard
           title="Loss Rate"
           value="3.42%"
           description="-0.8% drop"
           isTrendUp={false}
-          icon={Activity}
+          icon={LuActivity}
         />
       </section>
 
