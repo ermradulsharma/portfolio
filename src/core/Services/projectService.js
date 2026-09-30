@@ -5,11 +5,16 @@ import User from '@/core/Models/User';
 
 export const projectService = {
     async getProjects() {
-        return await Project.find({})
-            .sort({ createdAt: -1 })
-            .populate('category', 'name icon')
-            .populate('technologies', 'name icon')
-            .populate('user', 'name');
+        try {
+            return await Project.find({})
+                .sort({ createdAt: -1 })
+                .populate('category', 'name icon')
+                .populate('technologies', 'name icon')
+                .populate('user', 'name');
+        } catch (error) {
+            console.warn("Project query warning (DB offline/empty):", error.message);
+            return [];
+        }
     },
 
     async createProject(data) {
@@ -20,3 +25,4 @@ export const projectService = {
         return await Project.findByIdAndDelete(id);
     }
 };
+

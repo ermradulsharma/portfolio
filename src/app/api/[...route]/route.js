@@ -34,7 +34,12 @@ function findRoute(method, slug) {
 
 async function handler(req, { params }) {
     try {
-        await dbConnect();
+        try {
+            await dbConnect();
+        } catch (dbErr) {
+            console.warn("API route handler DB connection warning:", dbErr.message);
+        }
+        
         const { route: slug } = await params;
         const method = req.method;
         const match = findRoute(method, slug);
