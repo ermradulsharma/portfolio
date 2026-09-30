@@ -14,7 +14,6 @@ async function dbConnect() {
     }
 
     if (cached.conn) {
-        // Verify Mongoose connection state (1 = connected)
         if (cached.conn.readyState === 1) {
             return cached.conn;
         }
@@ -24,9 +23,9 @@ async function dbConnect() {
 
     if (!cached.promise) {
         const opts = {
-            bufferCommands: false,
-            serverSelectionTimeoutMS: 5000, // Fast 5s timeout instead of hanging 30s
-            connectTimeoutMS: 5000,
+            bufferCommands: true, // Allow Mongoose to buffer model commands while connecting
+            serverSelectionTimeoutMS: 8000,
+            connectTimeoutMS: 8000,
         };
 
         cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongooseInstance) => {
@@ -48,4 +47,5 @@ async function dbConnect() {
 }
 
 export default dbConnect;
+
 

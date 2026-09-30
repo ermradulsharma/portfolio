@@ -37,8 +37,10 @@ async function handler(req, { params }) {
         try {
             await dbConnect();
         } catch (dbErr) {
-            console.warn("API route handler DB connection warning:", dbErr.message);
+            console.error("API route handler DB connection error:", dbErr.message);
+            return errorResponse(HTTP_STATUS.SERVICE_UNAVAILABLE || 503, `Database connection failure: ${dbErr.message}`);
         }
+
         
         const { route: slug } = await params;
         const method = req.method;
