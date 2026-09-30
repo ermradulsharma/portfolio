@@ -1,9 +1,15 @@
 import "./globals.css";
-import { Outfit } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 
 const outfit = Outfit({
     subsets: ["latin"],
     variable: "--font-outfit",
+    display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+    subsets: ["latin"],
+    variable: "--font-jakarta",
     display: "swap",
 });
 
@@ -21,8 +27,12 @@ export const metadata = {
         telephone: false,
     },
     icons: {
-        icon: "/favicon.ico",
-        // You can add shortcut or apple specific icons here
+        icon: [
+            { url: "/favicon.ico" },
+            { url: "/image/logo.png", type: "image/png" },
+        ],
+        shortcut: ["/favicon.ico"],
+        apple: [{ url: "/image/logo.png" }],
     },
     openGraph: {
         title: "Mradul Sharma",
@@ -43,8 +53,8 @@ export const metadata = {
 };
 
 export const viewport = {
-    themeColor: "#dcdcdc",
-    colorScheme: "dark",
+    themeColor: "#e0e5ec",
+    colorScheme: "light",
     width: "device-width",
     initialScale: 1,
     maximumScale: 5,
@@ -52,8 +62,8 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className={`${outfit.variable} antialiased`}>
-            <body className={`${outfit.className} bg-[#0a0a0f] text-white min-h-screen font-sans`}>
+        <html lang="en" className={`${outfit.variable} ${plusJakarta.variable} antialiased`}>
+            <body className={`${plusJakarta.className} bg-[#e0e5ec] text-slate-800 min-h-screen font-sans selection:bg-cyan-500 selection:text-white`}>
                 {children}
             </body>
         </html>

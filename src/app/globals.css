@@ -1,11 +1,81 @@
 @import "tailwindcss";
 
 :root {
-  --font-sans: var(--font-outfit), sans-serif;
+  --font-sans: var(--font-jakarta), var(--font-outfit), system-ui, -apple-system, sans-serif;
+  --neu-light-bg: #e0e5ec;
+  --neu-shadow-dark: #a3b1c6;
+  --neu-shadow-light: #ffffff;
 }
 
 body {
   font-family: var(--font-sans);
+  background-color: var(--neu-light-bg);
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light Neumorphism Flat & Raised Surfaces */
+.neu-flat {
+  background: #e0e5ec;
+  box-shadow: 8px 8px 16px #a3b1c6, -8px -8px 16px #ffffff;
+}
+
+.neu-raised {
+  background: linear-gradient(145deg, #f0f5fc, #cacfd4);
+  box-shadow: 8px 8px 18px #a3b1c6, -8px -8px 18px #ffffff;
+}
+
+.neu-raised-sm {
+  background: linear-gradient(145deg, #f0f5fc, #d5dae1);
+  box-shadow: 4px 4px 10px #a3b1c6, -4px -4px 10px #ffffff;
+}
+
+.neu-raised-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neu-raised-hover:hover {
+  background: linear-gradient(145deg, #f5fafd, #c4c9ce);
+  box-shadow: 12px 12px 24px #98a6bb, -12px -12px 24px #ffffff;
+  transform: translateY(-3px);
+}
+
+/* Light Neumorphism Inset (Pressed / Sunken Depth) */
+.neu-inset {
+  background: #e0e5ec;
+  box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+}
+
+.neu-inset-cyan {
+  background: #e0e5ec;
+  box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff, 0 0 15px rgba(6, 182, 212, 0.25);
+}
+
+/* Light Neumorphism Convex Button */
+.neu-button {
+  background: linear-gradient(145deg, #f0f5fc, #cacfd4);
+  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  transition: all 0.25s ease;
+}
+
+.neu-button:hover {
+  box-shadow: 8px 8px 16px #98a6bb, -8px -8px 16px #ffffff;
+  transform: translateY(-1px);
+}
+
+.neu-button:active {
+  background: #e0e5ec;
+  box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+  transform: translateY(0);
+}
+
+.neu-glow-cyan {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.35), 6px 6px 14px #a3b1c6, -6px -6px 14px #ffffff;
+}
+
+.neu-glow-purple {
+  box-shadow: 0 0 25px rgba(147, 51, 234, 0.35), 6px 6px 14px #a3b1c6, -6px -6px 14px #ffffff;
 }
 
 @keyframes spin-slow {
@@ -34,6 +104,4 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
-
-
 

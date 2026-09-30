@@ -7,5 +7,9 @@ export const technologyService = {
             query.category = categoryId;
         }
         return await Technology.find(query).sort({ name: 1 });
+    },
+
+    async updateTechnology(id, data) {
+        return await Technology.findByIdAndUpdate(id, data, { new: true, runValidators: true });
     }
 };

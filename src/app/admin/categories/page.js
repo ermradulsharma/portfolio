@@ -99,7 +99,63 @@ export default function CategoriesPage() {
 
     // Handlers
     const handleUpdateSave = async () => {
-        setIsEditModalOpen(false);
+        if (!editingCategory) return;
+        try {
+            const res = await fetch('/api/admin/categories', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id: editingCategory._id,
+                    name: formData.name,
+                    description: formData.description,
+                    icon: formData.icon,
+                    is_active: formData.is_active
+                })
+            });
+            const result = await res.json();
+            if (result.success) {
+                setCategories(prev => prev.map(c => c._id === editingCategory._id ? result.data : c));
+                setIsEditModalOpen(false);
+            }
+        } catch (error) {
+            console.error("Category update failed:", error);
+        }
+    };
+
+    const handleDeleteCategory = async (id) => {
+        if (!confirm("Are you sure you want to delete this category?")) return;
+        try {
+            const res = await fetch(`/api/admin/categories/${id}`, { method: 'DELETE' });
+            const result = await res.json();
+            if (result.success) {
+                setCategories(prev => prev.filter(c => c._id !== id));
+            }
+        } catch (err) {
+            console.error("Category delete failed:", err);
+        }
+    };
+
+    const handleSaveTech = async () => {
+        if (!editingTech) return;
+        try {
+            const res = await fetch('/api/admin/technologies', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id: editingTech._id,
+                    name: techFormData.name,
+                    description: techFormData.description,
+                    icon: techFormData.icon
+                })
+            });
+            const result = await res.json();
+            if (result.success) {
+                setCategoryTechs(prev => prev.map(t => t._id === editingTech._id ? result.data : t));
+                setIsTechEditModalOpen(false);
+            }
+        } catch (error) {
+            console.error("Tech update failed:", error);
+        }
     };
 
     // High level Column Configuration Definition
@@ -140,10 +196,10 @@ export default function CategoriesPage() {
             title: "Status",
             headerClassName: "text-center",
             className: "text-center",
-            render: () => (
+            render: (_, record) => (
                 <div className="flex items-center justify-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]" />
-                    <span className="text-sm text-emerald-400/90 font-medium">Active</span>
+                    <span className={`h-2 w-2 rounded-full ${record.is_active ? 'bg-emerald-500 shadow-[0_0_8px_#10b981]' : 'bg-amber-500'} animate-pulse`} />
+                    <span className={`text-sm font-medium ${record.is_active ? 'text-emerald-400/90' : 'text-amber-400/90'}`}>{record.is_active ? 'Active' : 'Inactive'}</span>
                 </div>
             )
         },
@@ -155,7 +211,7 @@ export default function CategoriesPage() {
                 <div className="flex items-center justify-center gap-1">
                     <Button onClick={() => openTechPreview(record)} variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-cyan-400 hover:bg-cyan-500/10 transition-all" title="View Technology"><LuBoxes size={16} /></Button>
                     <Button onClick={() => openEditModal(record)} variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all" title="Edit Domain"><LuPencil size={16} /></Button>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-all" title="Delete Permanent"><LuTrash2 size={16} /></Button>
+                    <Button onClick={() => handleDeleteCategory(record._id)} variant="ghost" size="icon" className="h-8 w-8 text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-all" title="Delete Permanent"><LuTrash2 size={16} /></Button>
                 </div>
             )
         }
@@ -248,7 +304,7 @@ export default function CategoriesPage() {
             </ActionModal>
 
             {/* Dynamic Technology Specialized Edit Modal */}
-            <ActionModal open={isTechEditModalOpen} onOpenChange={setIsTechEditModalOpen} title="Edit Technical Asset" description={`Refining dataset configuration for ${editingTech?.name || 'selected entity'}`} icon={LuPencil} iconColor="text-amber-400" saveText="Update Tech" cancelText="Discard" onSave={() => setIsTechEditModalOpen(false)}>
+            <ActionModal open={isTechEditModalOpen} onOpenChange={setIsTechEditModalOpen} title="Edit Technical Asset" description={`Refining dataset configuration for ${editingTech?.name || 'selected entity'}`} icon={LuPencil} iconColor="text-amber-400" saveText="Update Tech" cancelText="Discard" onSave={handleSaveTech}>
                 <div className="space-y-4">
                     <div className="flex items-center gap-4 bg-white/[0.02] p-3 border border-white/5 rounded-xl">
                         <Image src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${techFormData.icon?.toLowerCase()}/${techFormData.icon?.toLowerCase()}-original.svg`} fallbackSrc={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${techFormData.icon?.toLowerCase()}/${techFormData.icon?.toLowerCase()}-plain.svg`} alt={techFormData.name} containerClassName="h-12 w-12 bg-white/5" />

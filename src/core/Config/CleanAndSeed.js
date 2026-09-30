@@ -9,19 +9,11 @@ import { seedSocials } from '../Database/Seeders/SocialSeeder.js';
 const cleanAndSeed = async () => {
     try {
         await dbConnect();
-
-        if (mongoose.connection.db) {
-            await mongoose.connection.db.dropDatabase();
-        }
-
+        if (mongoose.connection.db) await mongoose.connection.db.dropDatabase();
         await seedCategories();
-
         await seedTechnologies();
-
         await seedUsers();
-
         await seedSocials();
-
         process.exit(0);
     } catch (error) {
         process.exit(1);

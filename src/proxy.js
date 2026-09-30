@@ -7,6 +7,7 @@ const MIDDLEWARE_REGISTRY = {
     auth: authMiddleware,
     guest: guestMiddleware
 };
+
 function getActiveRouteConfig(pathname) {
     const pathClean = pathname === '/' ? '/' : pathname.replace(/\/$/, '');
     const matches = webRoutes.filter(r => {
@@ -15,6 +16,7 @@ function getActiveRouteConfig(pathname) {
     });
     return matches.sort((a, b) => b.path.length - a.path.length)[0] || null;
 }
+
 export async function proxy(request) {
     const { pathname } = request.nextUrl;
     if (
@@ -37,6 +39,7 @@ export async function proxy(request) {
     }
     return NextResponse.next();
 }
+
 export const config = {
     matcher: [
         '/((?!_next/static|_next/image|favicon.ico|robots.txt|images/).*)',

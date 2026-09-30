@@ -4,7 +4,7 @@ import ProtectedRoute from "@/components/backend/auth/ProtectedRoute";
 export default function AdminLayout({ children }) {
     return (
         <ProtectedRoute>
-            <div className="h-screen overflow-hidden lg:grid lg:grid-cols-[260px_1fr] lg:grid-rows-[70px_1fr_auto]">
+            <div className="h-screen overflow-hidden lg:grid lg:grid-cols-[260px_1fr] lg:grid-rows-[70px_1fr_auto] bg-[#0f1015] text-white">
                 <Sidebar />
                 <Header />
                 <main className="lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3 p-6 relative overflow-y-auto min-h-0 no-scrollbar">

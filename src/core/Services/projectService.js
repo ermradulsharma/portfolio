@@ -1,4 +1,7 @@
 import Project from '@/core/Models/Project';
+import Category from '@/core/Models/Category';
+import Technology from '@/core/Models/Technology';
+import User from '@/core/Models/User';
 
 export const projectService = {
     async getProjects() {

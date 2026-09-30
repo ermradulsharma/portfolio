@@ -9,13 +9,20 @@ export default function ProtectedRoute({ children }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Authorization is now fully managed by the server-side Proxy (Middleware).
-        // If this layout is rendered, the Proxy has already validated the request.
-        setIsAuthorized(true);
-        setIsLoading(false);
-    }, []);
+        const hasCookieToken = document.cookie.split('; ').some(row => row.startsWith('admin_token='));
+        const localToken = typeof window !== 'undefined' ? localStorage.getItem('admin_token') : null;
+        const hasLocalToken = localToken && localToken !== 'undefined' && localToken !== 'null';
+        
+        if (!hasCookieToken && !hasLocalToken) {
+            setIsAuthorized(false);
+            setIsLoading(false);
+            router.push('/login');
+        } else {
+            setIsAuthorized(true);
+            setIsLoading(false);
+        }
+    }, [router]);
 
-    // While verification logic executes, we output NOTHING to prevent UI flickering/leakage
     if (isLoading || !isAuthorized) {
         return (
             <div className="min-h-screen w-full bg-[#09090b] flex items-center justify-center">
@@ -24,6 +31,5 @@ export default function ProtectedRoute({ children }) {
         );
     }
 
-    // Final visual grant
     return <>{children}</>;
 }
