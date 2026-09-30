@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LuRocket, LuMenu, LuX, LuSparkles, LuChevronRight } from "react-icons/lu";
+import { LuRocket, LuMenu, LuX, LuSparkles, LuChevronRight, LuShieldCheck } from "react-icons/lu";
 
 export default function Header() {
     const pathname = usePathname();
@@ -30,47 +30,47 @@ export default function Header() {
         <header
             className={`sticky top-0 z-50 w-full transition-all duration-300 ${
                 scrolled
-                    ? "bg-[#e0e5ec]/90 backdrop-blur-xl border-b border-white/60 neu-raised-sm py-3"
-                    : "bg-[#e0e5ec]/70 backdrop-blur-md py-4"
+                    ? "bg-[#e0e5ec]/90 backdrop-blur-xl border-b border-white/70 neu-raised-sm py-3"
+                    : "bg-[#e0e5ec]/80 backdrop-blur-md py-4"
             }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between">
                     
-                    {/* Brand Logo with Light Neumorphic Raised Frame */}
+                    {/* Brand Logo with Neumorphic Surface */}
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="relative flex items-center gap-3 p-2 rounded-2xl neu-raised neu-raised-hover border border-white/80">
                             <Image
                                 src="/image/logo.png"
                                 alt="Mradul Sharma Logo"
-                                width={38}
-                                height={38}
-                                className="w-9 h-9 object-contain rounded-xl shadow-md"
+                                width={40}
+                                height={40}
+                                className="w-10 h-10 object-contain rounded-xl shadow-md group-hover:scale-105 transition-transform"
                                 priority
                             />
                             <div className="flex flex-col pr-2">
                                 <span className="text-sm font-extrabold tracking-tight text-slate-900 group-hover:text-cyan-600 transition-colors">
                                     MRADUL<span className="text-cyan-600 font-light ml-1">SHARMA</span>
                                 </span>
-                                <span className="text-[9px] font-mono tracking-widest text-slate-500 uppercase -mt-0.5">
-                                    Soft UI Suite
+                                <span className="text-[9px] font-mono tracking-widest text-slate-500 uppercase -mt-0.5 font-bold">
+                                    SOFT UI SUITE
                                 </span>
                             </div>
                         </div>
                     </Link>
 
-                    {/* Desktop Navigation Links (Light Sunken Neumorphic Track) */}
-                    <nav className="hidden md:flex items-center gap-1.5 neu-inset p-1.5 rounded-full border border-white/60">
+                    {/* Desktop Navigation Links */}
+                    <nav className="hidden md:flex items-center gap-1.5 neu-inset p-1.5 rounded-full border border-white/70 shadow-inner">
                         {navItems.map((item) => {
                             const isActive = pathname === item.href;
                             return (
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`px-5 py-2 text-xs font-semibold rounded-full transition-all duration-300 relative ${
+                                    className={`px-5 py-2 text-xs font-bold rounded-full transition-all duration-300 relative ${
                                         isActive
-                                            ? "neu-button text-cyan-600 border border-white/80 font-extrabold"
-                                            : "text-slate-600 hover:text-slate-900 hover:bg-white/40"
+                                            ? "neu-button text-cyan-600 border border-white/80 font-extrabold shadow-md"
+                                            : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
                                     }`}
                                 >
                                     {item.name}
@@ -82,25 +82,26 @@ export default function Header() {
                         })}
                     </nav>
 
-                    {/* Right Actions */}
+                    {/* Right Action Controls */}
                     <div className="hidden md:flex items-center gap-4">
-                        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold neu-inset border border-emerald-500/30 text-emerald-600">
+                        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold neu-inset border border-emerald-500/30 text-emerald-700">
                             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]" />
-                            System Active
+                            ONLINE • v16.3
                         </div>
 
                         <Link href="/login">
-                            <button className="neu-button neu-glow-cyan px-5 py-2.5 rounded-full text-slate-900 font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 group border border-white/80">
+                            <button className="neu-button neu-glow-cyan px-5 py-2.5 rounded-full text-slate-900 font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 group border border-white/80 hover:text-cyan-600 transition-colors">
                                 <LuRocket size={15} className="text-cyan-600 group-hover:rotate-12 transition-transform" />
                                 <span>Console Access</span>
                             </button>
                         </Link>
                     </div>
 
-                    {/* Mobile Menu Toggle Button */}
+                    {/* Mobile Toggle Button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="md:hidden p-2.5 rounded-2xl neu-button text-slate-700 hover:text-slate-900 focus:outline-none border border-white/80"
+                        className="md:hidden p-2.5 rounded-2xl neu-button text-slate-800 hover:text-slate-900 focus:outline-none border border-white/80"
+                        aria-label="Toggle Navigation Menu"
                     >
                         {mobileMenuOpen ? <LuX size={22} /> : <LuMenu size={22} />}
                     </button>
@@ -115,10 +116,10 @@ export default function Header() {
                             key={item.name}
                             href={item.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className={`flex items-center justify-between px-4 py-3 rounded-2xl text-base font-medium transition-all ${
+                            className={`flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-bold transition-all ${
                                 pathname === item.href
-                                    ? "neu-inset text-cyan-600 font-bold border border-cyan-500/30"
-                                    : "text-slate-700 hover:text-slate-900 neu-button"
+                                    ? "neu-inset text-cyan-600 border border-cyan-500/30"
+                                    : "text-slate-700 hover:text-slate-900 neu-button border border-white/80"
                             }`}
                         >
                             <span>{item.name}</span>
@@ -127,7 +128,7 @@ export default function Header() {
                     ))}
                     <div className="pt-2">
                         <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
-                            <button className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl neu-button text-slate-900 font-bold text-sm border border-white/80">
+                            <button className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl neu-button neu-glow-cyan text-slate-900 font-extrabold text-sm border border-white/80">
                                 <LuRocket size={16} className="text-cyan-600" />
                                 Launch Admin Console
                             </button>
